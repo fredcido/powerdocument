@@ -1,0 +1,149 @@
+.input-file {
+	float: right; 
+	position: relative; 
+	margin-top: -38px; 
+	cursor: pointer;
+	margin-right: -10px;
+	opacity:0;
+	width: 100%;
+}
+
+li.categoria-selected {
+    background: #B0D6E8;
+}
+.img-delete-categorias {
+    float: left;
+    margin-top: -2px;
+    padding-right: 5px;
+}
+
+#list-acoes label {
+    font-weight: normal !important;
+}
+
+#list-acoes label input {
+    margin-right: 5px;
+}
+
+.toolbar-controls {
+	background: -moz-linear-gradient(center top , white, #E5E5E5 88%, #D8D8D8) repeat scroll 0 0 transparent;
+	border-bottom: 1px solid #999999;
+	margin: 0 -1.667em 1.667em;
+	padding: 20px;
+	text-align: right;
+}
+
+#list-perfis label {
+    font-weight: normal !important;
+}
+
+#list-perfis label input {
+    margin-right: 5px;
+}
+
+ul.controls-buttons .view-selected {
+    border-color: #1eafdc #1193d5 #035592;
+    background: #057fdb url(../../images/old-browsers-bg/block-control-hover-bg.png) repeat-x;
+    background: -moz-linear-gradient(
+	    top,
+	    white,
+	    #2bcef3 5%,
+	    #057fdb
+    );
+    background: -webkit-gradient(
+	    linear,
+	    left top, left bottom,
+	    from(white),
+	    to(#057fdb),
+	    color-stop(0.05, #2bcef3)
+    );
+    color: white;
+}
+
+#grid-list-files table, 
+#grid-list-files tbody, 
+#grid-list-files td, 
+#grid-list-files tfoot, 
+#grid-list-files th, 
+#grid-list-files thead, 
+#grid-list-files tr, 
+#grid-list-files tt,
+ul.message  
+{
+	font-size:95% !important;
+}
+#grid-list-files td {
+	color:#333;
+}
+#grid-list-files_wrapper .block-footer {
+	margin-top: 0;
+}
+.block-content .no-margin.last-child {
+    margin-bottom: 0;
+}
+.block-content .no-margin:last-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+}
+.block-content .no-margin {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.with-padding {
+	padding: 1em 0;
+}
+
+#painel tbody {
+	height: 50px !important;
+}
+
+span.icon-extensao {
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    display: block;
+    height: 18px;
+}
+
+#grid-list-files .document { background-image: url(../../images/icons/fugue/document.png); }
+#grid-list-files .document-access { background-image: url(../../images/icons/fugue/document-access.png); }
+#grid-list-files .document-binary { background-image: url(../../images/icons/fugue/document-binary.png); }
+#grid-list-files .document-bookmark { background-image: url(../../images/icons/fugue/document-bookmark.png); }
+#grid-list-files .document-code { background-image: url(../../images/icons/fugue/document-code.png); }
+#grid-list-files .document-excel { background-image: url(../../images/icons/fugue/document-excel.png); }
+#grid-list-files .document-film { background-image: url(../../images/icons/fugue/document-film.png); }
+#grid-list-files .document-flash { background-image: url(../../images/icons/fugue/document-flash-movie.png); }
+#grid-list-files .document-illustrator { background-image: url(../../images/icons/fugue/document-illustrator.png); }
+#grid-list-files .document-image { background-image: url(../../images/icons/fugue/document-image.png); }
+#grid-list-files .document-music { background-image: url(../../images/icons/fugue/document-music.png); }
+#grid-list-files .document-office { background-image: url(../../images/icons/fugue/document-office.png); }
+#grid-list-files .document-pdf { background-image: url(../../images/icons/fugue/document-pdf.png); }
+#grid-list-files .document-photoshop { background-image: url(../../images/icons/fugue/document-photoshop.png); }
+#grid-list-files .document-powerpoint { background-image: url(../../images/icons/fugue/document-powerpoint.png); }
+#grid-list-files .document-text { background-image: url(../../images/icons/fugue/document-text.png); }
+#grid-list-files .document-web { background-image: url(../../images/icons/fugue/document-globe.png); }
+#grid-list-files .document-word { background-image: url(../../images/icons/fugue/document-word.png); }
+#grid-list-files .document-zip { background-image: url(../../images/icons/fugue/document-zipper.png); }
+
+
+#container-upload, #desc-file { cursor: pointer; }
+#container-upload { margin-bottom: 10px; }
+
+.upload-progress {
+    width: 100%;
+    padding: 5px 0 5px 0;
+}
+
+.upload-progress .bar {
+    width: 0;
+}
+
+.upload-progress .info {
+    display: block;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background: none;
+    font-size: 15px;
+}

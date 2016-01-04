@@ -1,0 +1,195 @@
+<section class="grid_12">
+	<div class="block-border">
+		<div class="block-content">
+			
+			<div class="h1 with-menu">
+				<h1>Arquivos</h1>
+				
+				<div class="menu">
+					<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/menu-open-arrow.png'); ?>">
+					<ul>
+						<li class="icon_down">
+							<a href="javascript:;" onclick="$('#filter-form').fadeIn();">Pesquisa</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<form action="#" method="post" id="filter-form" class="form" style="width: 500px; margin: 0 auto; display: none;">
+	      		
+				<fieldset class="grey-bg ">
+					<legend>
+					    Pesquisa
+					    <img style="cursor: pointer" onClick="$('#filter-form').fadeOut();" width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/cross-circle.png'); ?>" />
+					</legend>
+
+					<div class="columns">
+						<div class="colx2-left">
+							<span class="relative">
+								<label for="usuario">Usu&aacute;rio:</label>
+								<input type="text" name="txt-usuario">
+							</span>
+						</div>
+
+						<div class="colx2-right">
+							<span class="relative">
+								<label for="resultado">Arquivo:</label>
+								<input type="text" name="txt-arquivo">
+							</span>
+						</div>
+					</div>
+					
+					<div style="text-align: center">
+					    <button type="button" class="small" onclick="showFiles();">
+							<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/magnifier.png' ); ?>">
+							Buscar
+					    </button>
+					    <button type="reset" class="small">
+							<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/trash.png' ); ?>">
+							Limpar
+					    </button>
+					</div>
+				</fieldset>
+	      		
+	      	</form>
+
+			<div class="block-controls">
+				<ul class="controls-buttons">
+					<li id="limite-user">
+						<?php echo $this->action('percentual', 'arquivo', 'default'); ?>
+					</li>
+					<li class="sep"></li>
+					<li>
+						<span class="label">Status dos arquivos</span>
+						<input type="checkbox" checked="checked" class="mini-switch with-tip" id="check-filter-status" title="Liberado/Bloqueado" style="display: none;">
+					</li>
+					<li class="sep"></li>
+					<li>
+					    <a title="Visualiza&ccedil;&atilde;o em grid" id="view-list" class="with-tip view-selected view-type" href="javascript:;">
+						<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/application-table.png'); ?>">
+					    </a>
+					</li>
+					<li>
+					    <a title="Visualiza&ccedil;&atilde;o em &iacute;cones" id="view-icon" class="with-tip view-type" href="javascript:;">
+						    <img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/images.png'); ?>">
+					    </a>
+					</li>
+					<li>
+						<a href="javascript:;" onclick="showFiles();">
+							<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/arrow-circle.png'); ?>">
+						</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="content-columns left30">
+				<div class="content-columns-sep" style="left: 18%"></div>
+				
+				<div class="content-left" style="width: 18%">
+					<div class="with-head">
+						<div class="head">
+							<div class="black-cell">
+								<span class="success"></span>
+							</div>
+							
+							<div>
+								<div class="button menu-opener">
+									A&ccedil;&atilde;o
+									<div class="menu-arrow">
+										<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/menu-open-arrow.png'); ?>">
+									</div>
+									<div class="menu">
+										<ul style="opacity: 1;">
+											<li class="icon_export">
+												<a href="javascript:;">Limpar Filtro</a>
+												
+												<ul style="opacity: 1;">
+													<li class="icon_network"><a href="javascript:;" onclick="cleanFilterTree('extensao');">Extens&atilde;o</a></li>
+													<li class="icon_server"><a href="javascript:;" onclick="cleanFilterTree('categoria');">Categoria</a></li>
+													<li class="icon_server"><a href="javascript:;" onclick="cleanFilterTree('tag');">Tag</a></li>
+													<li class="sep"></li>
+													<li class="icon_terminal"><a href="javascript:;" onclick="cleanFilterTree();">Todos</a></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					
+						<div style="height:336px; overflow: auto" class="dark-grey-gradient with-padding">
+							<ul class="arbo with-title">
+								<li>
+									<a class="title-computer toggle" href="javascript:;">Arquivos</a>
+									<ul id="tree-filter">
+										<li class="closed">
+											<span class="toggle"></span>
+											<a class="folder" href="javascript:;"><span>Extens&atilde;o</span></a>
+										</li>
+										<li class="closed">
+											<span class="toggle"></span>
+											<a class="folder" href="javascript:;"><span>Categoria</span></a>
+										</li>
+										<li class="closed">
+											<span class="toggle"></span>
+											<a class="folder" href="javascript:;"><span>Tag</span></a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				
+					<ul class="message">
+						<li>Nenhum item selecionado</li>
+					</ul>
+				</div>
+			
+				<div class="content-right"  style="width: 82%">
+				
+					<div class="with-head">
+						<div class="head">
+							<?php if ( App_Util_Access::checkAccess( App_Util_Access::UPLOAD ) ): ?>
+							    <div class="black-cell with-gap"><span class="success"></span></div>
+							    <a href="javascript:;" onclick="dialog('<?php echo $this->path('form', 'arquivo'); ?>');" class="button">Upload</a>
+							<?php endif; ?>
+							<?php if ( App_Util_Access::checkAccess( App_Util_Access::DOWNLOAD ) ): ?>
+								<a href="javascript:;" onclick="downloadMultiplos();" class="button">Download</a>
+							<?php endif; ?>
+						</div>
+					
+						<div style="height:336px; overflow: auto" class="dark-grey-gradient with-padding">	
+							<div class="loading-tab stick-to-top" id="progress-container">
+							</div>
+						    
+							<form id="form-download-arquivo" method="post" action="<?php echo $this->path('downloads'); ?>">
+							     <input type="hidden" name="arquivo_id" id="arquivo_id" />
+							</form>
+						    
+							<form id="form-multiplos-download" method="post" action="<?php echo $this->path( 'multiplos-downloads' ); ?>">
+							    <div id="painel">
+								    <?php echo $this->action('view', 'arquivo', 'default'); ?>
+							    </div>
+							</form>
+						</div>
+					</div>
+				
+					<ul class="message">
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</section>
+
+
+<?php	if ( !empty( $this->open_file ) ) : ?>
+    <script type="text/javascript">
+	$(document).ready(function(){
+	    openFile('<?php echo $this->path( 'property' ), '/id/', $this->open_file; ?>');
+	});
+    </script>
+<?php endif; ?>

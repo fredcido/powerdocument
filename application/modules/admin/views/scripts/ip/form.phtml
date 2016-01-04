@@ -1,0 +1,25 @@
+<form method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>" class="form"  onsubmit="return save(this);">
+
+    <?php echo $this->form->getElement( 'id' ); ?>
+
+    <fieldset class="required">
+		<p>
+			<label for="titulo">IP</label>
+			<?php echo $this->form->getElement( 'ip' ); ?>
+		</p>
+		
+		<p>
+			<label for="descricao">Descri&ccedil;&atilde;o</label>
+			<?php echo $this->form->getElement( 'descricao' ); ?>
+		</p>
+	</fieldset>
+	
+	<fieldset class="grey-bg no-margin">
+		<div style="text-align: center;">
+		    <button type="submit">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>">
+				Salvar
+		    </button>
+		</div>
+    </fieldset>
+</form>

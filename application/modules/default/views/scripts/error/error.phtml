@@ -1,0 +1,17 @@
+<div class="code-page">
+    <h1><?php echo $this->code; ?></h1>
+    <p><?php echo $this->title; ?></p>
+    <section>
+
+	    <div class="block-content no-title dark-bg">
+		<?php echo $this->message; ?>
+	    </div>
+	
+	    <?php if ( !empty( $this->exception ) ) : ?>
+		<div class="block-content no-title dark-bg">
+		    <?php echo $this->exception->getMessage(); ?>
+		</div>
+	    <?php endif; ?>
+
+    </section>
+</div>

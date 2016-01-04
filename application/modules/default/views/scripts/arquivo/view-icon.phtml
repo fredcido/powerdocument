@@ -1,0 +1,59 @@
+<?php if ( $this->rows->count() ): ?>
+    <ul class="grid">
+	<?php foreach ( $this->rows as $row ): ?>
+	    <li>
+		<div class="grid-picto" style="background: url(<?php echo $this->baseUrl( 'public/images/icons/finefiles/32/' ), $this->showIconDocument()->ico( $row->extensao ); ?>) 5px 10px no-repeat">
+		    <small><?php echo strtoupper( $row->extensao ); ?></small>
+		    <p class="grid-name"><?php echo $this->truncate( $row->nome, 10 ); ?></p>
+		    <p class="grid-details" style="margin: 0 0 0 -40px; line-height: 20px;">
+			Tamanho: <b><?php echo $this->bitCalculator( $row->tamanho ); ?></b><br>
+			Usu&aacute;rio: <b><?php echo $this->truncate( $row->usuario, 10 ); ?></b><br>
+			Perfil: <b><?php echo $row->perfil; ?></b>
+		    </p>
+		</div>
+		<ul class="grid-actions">
+		    <li>
+			<a class="with-tip" title="Abrir" href="javascript:;" onclick="openFile('<?php echo $this->path( 'property' ), '/id/', $row->id; ?>');">
+			    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/folder-open.png' ); ?>">
+			</a>
+		    </li>
+		    <?php if ( App_Util_Access::checkAccess( App_Util_Access::EDITAR ) ): ?>
+		    <li>
+			<a class="with-tip" title="Editar" href="javascript:;" onclick="dialog('<?php echo $this->path( 'edit' ), '/id/', $row->id; ?>');">
+			    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/pencil.png' ); ?>">
+			</a>
+		    </li>
+		    <li>
+			<a class="with-tip" title="<?php echo empty( $row->liberado ) ? 'Liberar' : 'Bloquear'; ?>" href="javascript:;" onclick="refreshStatusFile(this, <?php echo $row->id; ?>, <?php echo $row->liberado; ?>)">
+				<?php if ( !empty( $row->liberado ) ): ?>
+				    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/cross-circle.png' ); ?>">
+				<?php else: ?>
+				    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/tick-circle.png' ); ?>">
+				<?php endif; ?>
+			</a>
+		    </li>
+		    <?php endif; ?>
+
+		    <?php if ( App_Util_Access::checkAccess( App_Util_Access::DOWNLOAD ) && $row->liberado ): ?>
+			<li>
+			    <a class="with-tip" title="Download" href="javascript:;" onClick="downloadArquivo( <?php echo $row->id; ?> );">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/navigation-270-white.png' ); ?>">
+			    </a>
+			</li>
+			<li>
+			    <input type="checkbox" class="check-arquivos" value="<?php echo $row->id; ?>" name="arquivos[]" />
+			</li>
+		    <?php endif; ?>
+
+		    <?php if ( App_Util_Access::checkAccess( App_Util_Access::EXCLUIR ) && !$row->liberado ): ?>
+			<li>
+			    <a class="with-tip" title="Excluir" href="javascript:;" onclick="excluir('<?php echo $row->id; ?>');">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/trash.png' ); ?>">
+			    </a>
+			</li>
+		    <?php endif; ?>
+		</ul>
+	    </li>
+	<?php endforeach; ?>
+    </ul>
+<?php endif; ?>

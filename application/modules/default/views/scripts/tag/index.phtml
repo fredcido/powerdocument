@@ -1,0 +1,55 @@
+<section class="grid_12">
+    <div class="block-border">
+	<form action="#" method="post" id="table_form" class="block-content form">
+	    <h1>Tags</h1>
+
+	    <div class="no-margin last-child">
+
+		<table width="100%" cellspacing="0" class="table sortable no-margin">
+		    <thead>
+			<tr>
+			    <th class="black-cell sorting_disabled" style="width: 17px;"><span></span></th>
+			    <th scope="col" style="width: 900px;" class="sorting">
+				<span class="column-sort">
+				    <a class="sort-up" title="Sort up" href="#"></a>
+				    <a class="sort-down" title="Sort down" href="#"></a>
+				</span>
+				T&iacute;tulo
+			    </th>
+			    <th scope="col" class="sorting_disabled" style="width: 222px;">URL</th>
+			    <th class="table-actions sorting_disabled" scope="col" style="width: 90px;">A&ccedil;&otilde;es</th>
+			</tr>
+		    </thead>
+
+		    <tbody>
+			<?php foreach ( $this->rows as $key => $value ): ?>
+    			<tr class="<?php echo $this->cycle( array( 'odd', 'even' ) )->next(); ?>">
+    			    <td class="th table-check-cell sorting_1"><?php echo $value->id; ?></td>
+    			    <td><?php echo $value->titulo; ?></td>
+    			    <td>
+    				<ul class="keywords">
+    				    <li>
+					<a href="http://<?php echo $_SERVER['SERVER_NAME'], $this->baseUrl( 'tags/' . $value->url . '/' ); ?>">
+					    <?php echo $value->url; ?>
+					</a>
+				    </li>
+    				</ul>
+    			    </td>
+    			    <td class="table-actions">
+    				<a class="with-tip" title="Editar" href="javascript:;" onclick="dialog('<?php echo $this->path( 'edit/id/' ), $value->id; ?>');">
+				    <img width="16" height="16" src="<?php echo $this->baseUrl(); ?>/public/images/icons/fugue/pencil.png" />
+				</a>
+				<?php if ( App_Util_Access::checkNivel( 'A' ) ) : ?>
+				    <a class="with-tip" title="Deletar" href="javascript:;" onclick="remover('<?php echo $this->path( 'delete/id/' ), $value->id; ?>');">
+					<img width="16" height="16" src="<?php echo $this->baseUrl(); ?>/public/images/icons/fugue/cross-circle.png" />
+				    </a>
+				<?php endif; ?>
+    			    </td>
+    			</tr>
+			<?php endforeach; ?>
+		    </tbody>
+		</table>
+	    </div>
+	</form>
+    </div>
+</section>

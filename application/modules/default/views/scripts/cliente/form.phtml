@@ -1,0 +1,65 @@
+<form method="<?php echo $this->form->getMethod() ?>" class="form" action="<?php echo $this->form->getAction() ?>" onsubmit="return save(this);">
+    <fieldset>
+	<?php echo $this->form->getElement( 'id' ); ?>
+
+	<p>
+	    <span class="relative">
+		<label for="nome" class="required">Nome:</label>
+		<?php echo $this->form->getElement( 'nome' ); ?>
+	    </span>
+	</p>
+	<p>
+	    <span class="relative">
+		<label for="cpf_cnpj" class="required">CPF/CNPJ:</label>
+		<?php echo $this->form->getElement( 'cpf_cnpj' ); ?>
+	    </span>
+	</p>
+	<div class="columns">
+	    <div class="colx2-left">
+		<label for="email" class="required">Email:</label>
+		<?php echo $this->form->getElement( 'email' ); ?>
+	    </div>
+	    <div class="colx2-right">
+		<label for="estado_civil_id" >Estado Civil:</label>
+		<?php echo $this->form->getElement( 'estado_civil_id' ); ?>
+	    </div>
+	</div>
+	<div class="columns">
+	    <div class="colx2-left">
+		<label for="telefone" class="required">Telefone:</label>
+		<?php echo $this->form->getElement( 'telefone' ); ?>
+	    </div>
+	    <div class="colx2-right">
+		<label for="sexo">Sexo:</label>
+		<?php echo $this->form->getElement( 'sexo' ); ?>
+	    </div>
+	</div>
+	<div class="columns">
+	    <div class="colx2-left">
+		<label for="atividade" class="required">Ramo de Atividade:</label>
+		<?php echo $this->form->getElement( 'atividade' ); ?>
+	    </div>
+	    <div class="colx2-right">
+		<label for="endereco" class="required">Endereço:</label>
+		<?php echo $this->form->getElement( 'endereco' ); ?>
+	    </div>
+	</div>
+	<div class="columns">
+	    <div class="colx2-left">
+		<label for="estado_id" class="required">Estado:</label>
+		<?php echo $this->form->getElement( 'estado_id' ); ?>
+	    </div>
+	    <div class="colx2-right">
+		<label for="cidade_id" class="required">Cidade:</label>
+		<?php echo $this->form->getElement( 'cidade_id' ); ?>
+	    </div>
+	</div>
+
+	<div style="text-align: center">
+	    <button type="submit">
+		<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>" />
+		Salvar
+	    </button>
+	</div>
+    </fieldset>
+</form>

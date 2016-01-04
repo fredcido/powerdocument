@@ -1,0 +1,77 @@
+<section class="grid_12">
+    <div class="block-border">
+	<form action="<?php echo $this->form->getAction() ?>" 
+	      method="<?php echo $this->form->getMethod() ?>" 
+	      id="form-relatorio" 
+	      class="block-content form" >
+	    <h1>Acessos</h1>
+	    
+	    <div  style="width: 600px; margin: 0 auto; margin-bottom: 35px;">
+	    <fieldset class="grey-bg ">
+		    <legend>Filtros</legend>
+		    
+			<div class="columns">
+			    <div class="colx2-left">
+				<span class="relative">
+				    <label for="usuario">Usu&aacute;rio:</label>
+				    <?php echo $this->form->getElement( 'usuario' ); ?>
+				</span>
+			    </div>
+
+			    <div class="colx2-right">
+				<span class="relative">
+				    <label for="resultado">Resultado:</label>
+				    <?php echo $this->form->getElement( 'resultado' ); ?>
+				</span>
+			    </div>
+			</div>
+
+			<div class="columns">
+			    <div class="colx2-left">
+				<span class="relative">
+				    <label for="data_inicial">Data Inicial:</label>
+				    <?php echo $this->form->getElement( 'data_inicial' ); ?>
+				</span>
+
+			    </div>
+
+			    <div class="colx2-right">
+
+				<span class="relative">
+				    <label for="data_final">Data Final:</label>
+				    <?php echo $this->form->getElement( 'data_final' ); ?>
+				</span>
+
+			    </div>
+			</div>
+
+
+			<div style="text-align: center">
+			    <button type="submit" class="small">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/magnifier.png' ); ?>">
+				Filtrar
+			    </button>
+			    <button type="reset" class="small">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/trash.png' ); ?>">
+				Limpar filtros
+			    </button>
+			    <button onClick="imprimirHtml('form-relatorio', '<?php echo $this->path('acesso-html'); ?>')" type="button" class="small">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/document-text.png' ); ?>">
+				Imprimir
+			    </button>
+			    <button onClick="imprimirPdf('form-relatorio', '<?php echo $this->path('acesso-pdf'); ?>')" type="button" class="small">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/document-pdf.png' ); ?>">
+				Imprimir Pdf
+			    </button>
+			</div>
+
+		</fieldset> 
+	    </div>
+	
+	<div id="div-relatorio" class="no-margin last-child">
+	    <?php echo $this->action( 'acesso', 'relatorio', 'admin' ); ?>
+	</div>	
+	    
+	</form>
+    </div>
+</section>

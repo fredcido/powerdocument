@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+	<title>Relat&oacute;rio de acesso</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<meta name="charset" content="utf-8" ></meta>
+	<style type="text/css">
+	    body {
+		font-family: sans-serif;
+	    }
+	    
+	    h2 {
+		text-align: center;
+		color: #666666;
+		font-weight: normal;
+	    }
+	    
+	    table {
+		width: 95%;
+		margin: 0 auto;
+		font-size: 11px
+	    }
+	    
+	    table td {
+		padding: 2px;
+		text-align: center;
+	    }
+	    
+	    table thead tr td {
+		background-color: #666666;
+		color: #fff;
+	    }
+	    
+	    table tbody td {
+		background-color: #F5F5F5;
+	    }
+	    
+	    #logo {
+		padding-left: 20px;
+	    }
+	</style>
+	
+	<?php if ( $this->printHtml ) : ?>
+	    <script type="text/javascript">
+		window.onload = function() {
+		    self.print();
+		    self.close();
+		}
+	    </script>
+	<?php endif; ?>
+    </head>
+    <body>
+	<div id="logo">
+	    <?php if ( $this->printHtml ) : ?>
+		<img src="<?php echo $this->baseUrl('public/images/powerdocument/logo-power-relatorio.png'); ?>" />
+	    <?php else : ?>
+		<img src="<?php echo APPLICATION_PATH; ?>/../public/images/powerdocument/logo-power-relatorio.jpg" />
+	    <?php endif; ?>
+	</div>
+	
+	    <h2>RELAT&Oacute;RIO DE ARQUIVOS</h2>
+
+	    <table>
+		<thead>
+		    <tr>
+			<td>Reg.</td>
+			<td>Arquivo</td>
+			<td>Usu&aacute;rio</td>
+			<td>Extens&atilde;o</td>
+			<td>A&ccedil;&atilde;o</td>
+			<td>Data/Hora</td>
+		    </tr>
+		</thead>
+		<tbody>
+			<?php foreach ( $this->data as $key => $value ) : ?>
+			    <tr>
+				<td><?php echo str_pad( ++$key, 3, '0', STR_PAD_LEFT); ?></td>
+				<td><?php echo $value->arquivo; ?></td>
+				<td><?php echo $value->nome; ?></td>
+				<td><?php echo $value->extensao; ?></td>
+				<td><?php echo $this->geral()->detalhaAcaoLog( $value->acao ); ?></td>
+				<td><?php echo $this->date( $value->data, 'dd/MM/yyyy HH:m:ss' ); ?></td>
+			    </tr>
+			<?php endforeach; ?>
+		</tbody>
+	    </table>
+    </body>
+</html>

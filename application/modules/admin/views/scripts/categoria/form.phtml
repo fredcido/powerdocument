@@ -1,0 +1,28 @@
+<form method="<?php echo $this->form->getMethod() ?>" 
+      class="form" 
+      action="<?php echo $this->form->getAction() ?>" 
+      onsubmit="return save(this);">
+	<fieldset class="grey-bg">
+	    <?php echo $this->form->getElement( 'id' ); ?>
+
+	    <p>
+		<span class="relative">
+		    <label for="nome" class="required">Nome:</label>
+		    <?php echo $this->form->getElement( 'nome' ); ?>
+		</span>
+	    </p>
+	    <p>
+		<span class="relative">
+		    <label for="liberado" class="required">Liberado:</label>
+		    <?php echo $this->form->getElement( 'liberado' ); ?>
+		</span>
+	    </p>
+	    
+	    <div style="text-align: center">
+		<button type="submit">
+		    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>">
+		    Salvar
+		</button>
+	    </div>
+	</fieldset>
+</form>

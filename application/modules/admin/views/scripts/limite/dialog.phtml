@@ -1,0 +1,18 @@
+<ul id="abas" class="tabs js-tabs same-height">
+    <li class="current">
+    	<a href="#tab-lista">Listar</a>
+    </li>
+    <li>
+    	<a href="#tab-form">Cadastrar</a>
+    </li>
+</ul>
+ 
+<div class="tabs-content">
+    <div id="tab-lista" class="tabs">
+        <?php echo $this->action('list', 'limite', 'admin'); ?>
+    </div>
+     
+    <div id="tab-form" class="tabs">
+        <?php echo $this->action('form', 'limite', 'admin'); ?>
+    </div>
+</div>

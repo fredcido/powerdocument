@@ -1,0 +1,87 @@
+<form id="form-login" 
+      method="<?php echo $this->form->getMethod() ?>" 
+      class="form" 
+      action="<?php echo $this->form->getAction() ?>" 
+      onsubmit="return save(this);">
+    
+	<ul class="tabs js-tabs same-height">
+	    <li class="current"><a href="#tab-data">Dados</a></li>
+	    <li><a href="#tab-perfil">Perfil</a></li>
+	</ul>
+
+	<div class="tabs-content" id="tab-container">
+
+	    <div id="tab-data" class="tabs">
+    
+		<fieldset class="grey-bg">
+		    <?php echo $this->form->getElement( 'id' ); ?>
+
+		    <p>
+			<label for="nome" class="required">Nome</label>
+			<?php echo $this->form->getElement( 'nome' ); ?>
+		    </p>
+
+		    <p>
+			<label for="email" class="required">E-mail</label>
+			<?php echo $this->form->getElement( 'email' ); ?>
+		    </p>
+
+		    <div class="columns">
+			<div class="colx2-left<?php echo $this->form->getElement( 'senha' )->isRequired() ? ' required' : ''; ?>">
+			    <label for="senha">Senha</label>
+			    <?php echo $this->form->getElement( 'senha' ); ?>
+			</div>
+			<div class="colx2-right<?php echo $this->form->getElement( 'confirma_senha' )->isRequired() ? ' required' : ''; ?>">
+			    <label for="confirma_senha required">Confirma senha</label>
+			    <?php echo $this->form->getElement( 'confirma_senha' ); ?>
+			</div>
+		    </div>
+
+		    <div class="columns">
+			<div class="colx2-left">
+			    <label for="liberado">Liberado</label>
+			    <?php echo $this->form->getElement( 'liberado' ); ?>
+			</div>
+			<div class="colx2-right">
+			    <label for="nivel" class="required">N&iacute;vel</label>
+			    <?php echo $this->form->getElement( 'nivel' ); ?>
+			</div>
+		    </div>
+		</fieldset>
+	
+	    </div>
+	    
+	    <div id="tab-perfil" class="tabs">
+		<fieldset class="grey-bg">
+		    <p>
+			<label for="perfil_id" class="required">Perfil</label>
+			<?php echo $this->form->getElement( 'perfil_id' ); ?>
+		    </p>
+		    
+		    <?php echo $this->form->getElement('limite_id'); ?>
+		    <div id="html-limite">
+			    <?php 
+				    $params = array();
+
+				    $limite_id = $this->form->getElement('limite_id')->getValue();
+
+				    if ( !empty($limite_id) )
+					    $params['id'] = $limite_id;
+
+				    echo $this->action('selected', 'limite', 'admin', $params); 
+			    ?>
+		    </div>
+		   
+		</fieldset>
+	    </div>
+	   
+	</div>
+
+	<div style="text-align: center; margin-top: 5px">
+	    <button type="submit">
+		<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>" />
+		Salvar
+	    </button>
+	</div>
+    </fieldset>
+</form>

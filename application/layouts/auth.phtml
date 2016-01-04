@@ -1,0 +1,47 @@
+<?php echo $this->docType('HTML5'); ?>
+<html lang="pt-br">
+<head>
+	<?php
+	    $config = Zend_Registry::get('config');
+
+	    $this->headLink()->exchangeArray( array() ); 
+	    $this->headScript()->exchangeArray( array() ); 
+	    $this->headTitle()->exchangeArray( array() ); 
+	    $this->headMeta()->exchangeArray( array() ); 
+	    
+	    echo $this->headTitle( $config->geral->title );
+	    echo $this->headMeta()->appendName('charset', 'utf-8');
+	    
+	    $this->headLink()->appendStylesheet( $this->baseUrl('public/styles/reset.css') );
+	    $this->headLink()->appendStylesheet( $this->baseUrl('public/styles/common.css') );
+	    $this->headLink()->appendStylesheet( $this->baseUrl('public/styles/form.css') );
+	    $this->headLink()->appendStylesheet( $this->baseUrl('public/styles/standard.css') );
+	    $this->headLink()->appendStylesheet( $this->baseUrl('public/styles/special-pages.css') );
+	    
+	    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/js/html5.js' ) );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/jquery-1.4.2.min.js') );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/old-browsers.js') );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/common.js') );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/standard.js') );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/standard.ie.js'), 'text/javascript', array( 'conditional' => 'lte IE 8' ) );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/jquery.tip.js') );
+	    $this->headScript()->appendFile( $this->baseUrl('public/scripts/js/login.js') );
+	    
+	    echo $this->headLink();
+	    echo $this->headScript();
+	?>
+    
+	<script type="text/javascript">
+		var baseUrl = '<?php echo $this->baseUrl(); ?>';
+	</script>
+</head>
+    <body class="special-page login-bg dark">
+	<!--[if lt IE 9]><div class="ie"><![endif]-->
+	<!--[if lt IE 8]><div class="ie7"><![endif]-->
+
+	    <?php echo $this->layout()->content; ?>
+
+	<!--[if lt IE 8]></div><![endif]-->
+	<!--[if lt IE 9]></div><![endif]-->
+    </body>
+</html>

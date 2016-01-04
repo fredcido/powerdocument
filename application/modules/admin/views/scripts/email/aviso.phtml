@@ -1,0 +1,38 @@
+<div style="border: 1px solid #B5C6CF; background-color: #D1E4EF; padding: 3px; font-family: verdana, arial; font-size: 12px; color: #666;">
+    <div style="background-color: #FFF">
+        <h1 style="border-bottom: 4px solid #B5C6CF; margin:0; padding: 23px; font-weight: normal; min-height: 30px; color: #5790AF;">
+	    Aviso do sistema - <?php echo $this->titulo; ?>
+	    
+	</h1>
+        <div style="margin:0px 1px 1px 1px; background-color: #EFF9FF; ">
+            <div id="corpo" style="padding: 5px 10px; margin: 0; width: 90%;">
+                <p>
+                    Prezado Administrador,<br/>
+                    Gostar&iacute;amos de informar que o usu&aacute;rio a seguir excedeu a quota de limite definida para o mesmo.
+                </p>
+                <p style="padding:5px; border: 1px dotted #CCC;">
+                    Informa&ccedil;&otilde;es do usu&aacute;rio:<br/><br/>
+
+                    Nome: <b><?php echo $this->user->nome;?></b><br/>
+                    E-mail: <b><?php echo $this->user->email;?></b><br/>
+                    Perfil: <b><?php echo $this->perfil->nome;?></b><br/>
+                </p>
+		<p style="padding:5px; border: 1px dotted #CCC;">
+                    Informa&ccedil;&otilde;es do limite definido:<br/><br/>
+
+                    M&aacute;ximo: <b><?php echo App_Util_Readable::readBytes( $this->limites->maximo, $this->limites->unidade_limite ); ?></b><br/>
+                    Per&iacute;odo: <b><?php echo App_Util_Readable::readTime( $this->limites->periodo, $this->limites->unidade_periodo ); ?></b><br/>
+                    Quantidade: <b><?php echo $this->limites->quantidade; ?> arquivo(s)</b><br/>
+                </p>
+		<p style="padding:5px; border: 1px dotted #CCC;">
+                    Valores atuais:<br/><br/>
+
+                    Download: <b><?php echo $this->bitCalculator( $this->atual->size ); ?></b><br/>
+                    Quantidade: <b><?php echo $this->atual->total; ?> arquivo(s)</b><br/>
+                </p>
+            </div>
+        </div>
+
+    </div>   
+</div>
+<p style="font-family: verdana, arial; font-size: 11px; text-align: center;">Mensagem autom&aacute;tica, por favor n&atilde;o responda esse email.</p>

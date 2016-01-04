@@ -1,0 +1,44 @@
+<form method="<?php echo $this->form->getMethod(); ?>" action="<?php echo $this->form->getAction(); ?>" class="form"  onsubmit="return saveLimite(this);">
+
+    <?php echo $this->form->getElement( 'id' ); ?>
+
+    <fieldset class="required">
+    	<div class="columns">
+			<div class="colx2-left">
+				<label for="maximo">M&aacute;ximo</label>
+				<?php echo $this->form->getElement('maximo'); ?>
+			</div>
+			
+			<div class="colx2-right">
+			    <label for="unidade_limite">Unidade</label>
+			    <?php echo $this->form->getElement('unidade_limite'); ?>
+			</div>
+		</div>
+		
+		<div class="columns">
+			<div class="colx2-left">
+				<label for="periodo">Periodo</label>
+				<?php echo $this->form->getElement('periodo'); ?>
+			</div>
+			
+			<div class="colx2-right">
+				<label for="unidade_periodo">Unidade</label>
+				<?php echo $this->form->getElement('unidade_periodo'); ?>
+			</div>
+		</div>
+		
+		<p>
+			<label for="quantidade">Quantidade</label>
+			<?php echo $this->form->getElement( 'quantidade' ); ?>
+		</p>
+	</fieldset>
+	
+	<fieldset class="grey-bg no-margin">
+		<div style="text-align: center;">
+		    <button type="submit">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>">
+				Salvar
+		    </button>
+		</div>
+    </fieldset>
+</form>

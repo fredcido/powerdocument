@@ -1,0 +1,47 @@
+<div style="border: 1px solid #B5C6CF; background-color: #D1E4EF; padding: 3px; font-family: verdana, arial; font-size: 12px; color: #666;">
+    <div style="background-color: #FFF">
+        <h1 style="border-bottom: 4px solid #B5C6CF; margin:0; padding: 23px; font-weight: normal; min-height: 30px; color: #5790AF;">
+	    Lembrete do sistema - <?php echo $this->titulo; ?>
+	</h1>
+        <div style="margin:0px 1px 1px 1px; background-color: #EFF9FF; ">
+            <div id="corpo" style="padding: 5px 10px; margin: 0; width: 90%;">
+                <p>
+                    Prezado Usu&aacute;rio,<br/>
+                    Gostar&iacute;amos de informar a <?php echo $this->criacao ? 'cria&ccedil;&atilde;o' : 'altera&ccedil;&atilde;o'; ?> 
+		    do arquivo descrito a seguir.
+                </p>
+                <p style="padding:5px; border: 1px dotted #CCC;">
+                    Informa&ccedil;&otilde;es do arquivo:<br/><br/>
+
+                    Nome: <b><?php echo $this->arquivo->nome;?></b><br/>
+		    
+                    Extens&atilde;o: <b><?php echo strtoupper( $this->arquivo->extensao ); ?></b><br/>
+		    
+		    Tamanho: <b><?php echo $this->bitCalculator( $this->arquivo->tamanho ); ?></b><br/>
+		    
+                    Descri&ccedil;&atilde;o: <b><?php echo $this->arquivo->descricao;?></b><br/>
+		    
+                    Title: <b><?php echo $this->arquivo->title;?></b><br/>
+		    
+                    Description: <b><?php echo $this->arquivo->description;?></b><br/>
+		    
+                    Keywords: <b><?php echo $this->arquivo->keywords;?></b><br/>
+                </p>
+		
+		<b>Categorias do arquivo: </b>
+		<ul>
+		    <?php foreach ( $this->categorias as $categoria ) : ?>
+			<li><?php echo $categoria->nome; ?></li>
+		    <?php endforeach; ?>
+		</ul>
+
+		Visualize o arquivo diretamente clicando 
+		<a href="<?php echo $_SERVER['SERVER_NAME'] 
+			. $this->path( 'index', 'arquivo', null, array( 'id' => md5( $this->arquivo->id ) ) ); ?>">aqui</a>.
+		
+            </div>
+        </div>
+
+    </div>   
+</div>
+<p style="font-family: verdana, arial; font-size: 11px; text-align: center;">Mensagem autom&aacute;tica, por favor n&atilde;o responda esse email.</p>

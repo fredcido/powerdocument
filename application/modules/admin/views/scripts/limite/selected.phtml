@@ -1,0 +1,30 @@
+<div class="task with-legend" style="margin-top:25px;">
+	<div class="legend">
+		<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/flag.png'); ?>"> 
+		Defini&ccedil;&atilde;o de Limite
+	</div>
+	
+	<div class="task-description">
+		<div id="data-limite">
+			<?php if ( !empty($this->row) ): ?>
+				<ul class="floating-tags">
+					<li class="tag-user"><?php echo App_Util_Readable::readBytes($this->row->maximo, $this->row->unidade_limite); ?></li>
+					<li class="tag-time"><?php echo App_Util_Readable::readTime($this->row->periodo, $this->row->unidade_periodo); ?></li>
+					<li class="tag-tags"><?php echo $this->row->quantidade; ?> arquivo(s)</li>
+				</ul>
+			<?php endif; ?>
+		</div>
+		
+		<h3>Observa&ccedil;&atilde;o</h3>
+		Limite m&aacute;ximo de download, per&iacute;odo de acesso e quantidade
+	</div>
+	
+	<ul class="task-dialog">
+		<li style="background:#FFFFCD; text-align:center;">
+			<button type="button" onclick="dialogLimite();">
+				<img src="<?php echo $this->baseUrl( 'public/images/icons/fugue/magnifier.png' ); ?>" width="16" height="16">
+				Escolher Limite
+			</button>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,78 @@
+<article class="container_12">
+	<section class="grid_7">
+		<div class="block-border">
+			<form action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>" id="simple_form" class="block-content form" onsubmit="return save(this);">
+				<h1>Configura&ccedil;&atilde;o Geral</h1>
+				
+				<?php echo $this->form->getElement('id'); ?>
+				
+				<fieldset class="required">
+					<div class="columns">
+						<div class="colx2-left">
+							<label for="dias_temporario">Dias Tempor&aacute;rio</label>
+							<?php echo $this->form->getElement('dias_temporario'); ?>
+						</div>
+						<div class="colx2-right">
+						    <span class="label">Regra de IP</span>
+						    <?php echo $this->form->getElement('regra_ip'); ?>
+						</div>
+					</div>
+					
+					<div class="columns">
+						<div class="colx2-left">
+							<label for="email_admin">E-mail</label>
+							<?php echo $this->form->getElement('email_admin'); ?>
+						</div>
+						<div class="colx2-right">
+							<label for="acao_limite">A&ccedil;&atilde;o ao atingir limite</label>
+							<?php echo $this->form->getElement('acao_limite'); ?>
+						</div>
+					</div>
+					
+					<div class="columns">
+						<div class="colx2-left">
+							<label for="upload">Tamanho para upload</label>
+							<?php echo $this->form->getElement('upload'); ?>
+						</div>
+						<div class="colx2-right">
+							<label for="medida_upload">Unidade</label>
+							<?php echo $this->form->getElement('medida_upload'); ?>
+						</div>
+					</div>
+				</fieldset>
+
+				<?php echo $this->form->getElement('limite_id'); ?>
+				<div id="html-limite">
+					<?php 
+						$params = array();
+						$limite_id = $this->form->getElement('limite_id')->getValue();
+						
+						if ( !empty($limite_id) )
+							$params['id'] = $limite_id;
+						
+						echo $this->action('selected', 'limite', 'admin', $params); 
+					?>
+				</div>
+				
+				<fieldset class="grey-bg no-margin">
+					<div style="text-align: center">
+					    <button type="submit">
+							<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>">
+							Salvar
+					    </button>
+					</div>
+				</fieldset>					
+			</form>
+		</div>
+	</section>
+
+	<section class="grid_5">
+		<div class="block-border">
+			<div class="block-content">
+				<?php echo $this->action('ip', 'configuracao', 'admin'); ?>
+			</div>
+		</div>
+	</section>
+	
+	<div class="clear"></div>
+</article>

@@ -1,0 +1,90 @@
+<section class="grid_12">
+    <div class="block-border">
+	<form action="<?php echo $this->path( 'status' ); ?>" method="post" id="table_form" class="block-content form" onsubmit="return status(this);">
+	    <h1>Perfil</h1>
+
+	    <div class="no-margin last-child">
+
+		<table width="100%" cellspacing="0" class="table sortable no-margin">
+		    <thead>
+			<tr>
+			    <th class="black-cell sorting_disabled" style="width: 17px;"><span></span></th>
+			    <th scope="col" style="width: 121px;" class="sorting">
+				<span class="column-sort">
+				    <a class="sort-up" title="Sort up" href="#"></a>
+				    <a class="sort-down" title="Sort down" href="#"></a>
+				</span>
+				Status
+			    </th>
+			    <th scope="col" style="width: 351px;" class="sorting">
+				<span class="column-sort">
+				    <a class="sort-up" title="Sort up" href="#"></a>
+				    <a class="sort-down" title="Sort down" href="#"></a>
+				</span>
+				Nome
+			    </th>
+			    <th scope="col" class="sorting_disabled" style="width: 222px;">A&ccedil;&otilde;es</th>
+			    <th scope="col" style="width: 131px;" class="sorting">
+				<span class="column-sort">
+				    <a class="sort-up" title="Sort up" href="#"></a>
+				    <a class="sort-down" title="Sort down" href="#"></a>
+				</span>
+				Dt. Cadastro
+			    </th>
+			    <th class="table-actions sorting_disabled" scope="col" style="width: 90px;">A&ccedil;&otilde;es</th>
+			</tr>
+		    </thead>
+
+		    <tfoot>
+			<tr>
+			    <td colspan="7">
+				<img width="16" height="16" class="picto" src="<?php echo $this->baseUrl(); ?>/public/images/icons/fugue/arrow-curve-000-left.png" /> 
+				<a class="button" href="javascript:checked(true);">Marcar Todos</a> 
+				<a class="button" href="javascript:checked(false);">Desmarcar Todos</a>
+				<select class="small" id="table-action" name="table-action">
+				    <option value=""></option>
+				    <option value="1">Liberar</option>
+				    <option value="0">Bloquear</option>
+				</select>
+				<button class="small" type="submit" disabled>Ok</button>
+			    </td>
+			</tr>
+		    </tfoot>
+
+		    <tbody>
+			<?php foreach ( $this->data['perfil'] as $key => $value ): ?>
+    			<tr class="<?php echo $this->cycle( array( 'odd', 'even' ) )->next(); ?>">
+    			    <td class="th table-check-cell sorting_1">
+    				<input type="checkbox" value="<?php echo $value['id']; ?>" name="selected[]">
+    			    </td>
+    			    <td><?php echo $this->showStatus( $value['liberado'] ); ?></td>
+    			    <td><?php echo $value['nome']; ?></td>
+				<?php if ( !empty( $this->data['acao'][$value['id']] ) ) : ?>
+				    <td>
+					<ul class="tags with-children-tip" style="margin:-5px 0 0 0;">
+					    <?php foreach ( $this->data['acao'][$value['id']] as $acao ): ?>
+	    				    <li class="tag-tags"><?php echo $acao['titulo']; ?></a></li>
+					    <?php endforeach; ?>
+					</ul>
+				    </td>
+				<?php else: ?>
+				    <td class="empty">(nenhum)</td>
+				<?php endif; ?>
+    			    <td><?php echo $this->date( $value['dt_cadastro'] ); ?></td>
+    			    <td class="table-actions">
+    				<a class="with-tip" title="Editar" href="javascript:;" onclick="dialog('<?php echo $this->path( 'edit/id/' ), $value['id']; ?>');">
+				    <img width="16" height="16" src="<?php echo $this->baseUrl(); ?>/public/images/icons/fugue/pencil.png" />
+				</a>
+				<a class="with-tip" title="Deletar" href="javascript:;" onclick="remover('<?php echo $this->path( 'delete/id/' ), $value['id']; ?>');">
+				    <img width="16" height="16" src="<?php echo $this->baseUrl(); ?>/public/images/icons/fugue/cross-circle.png" />
+				</a>
+    			    </td>
+    			</tr>
+			<?php endforeach; ?>
+		    </tbody>
+		</table>
+
+	    </div>	
+	</form>
+    </div>
+</section>

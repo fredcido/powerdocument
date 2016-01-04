@@ -1,0 +1,141 @@
+<form id="form-arquivo" method="<?php echo $this->form->getMethod(); ?>" action="<?php echo $this->form->getAction(); ?>" class="form" enctype="multipart/form-data">
+
+    <?php
+    echo $this->form->getElement( 'id' );
+    echo $this->form->getElement( 'path' );
+    echo $this->form->getElement( 'loading_hash' );
+    ?>
+
+    <ul id="abas" class="tabs js-tabs same-height">
+	<li class="current"><a href="#tab-dados">Dados</a></li>
+	<li><a href="#tab-aviso">Aviso</a></li>
+	<li><a href="#tab-metatags">Meta Tags</a></li>
+	<li><a href="#tab-categoria">Categorias</a></li>
+	<li><a href="#tab-tag">Tags</a></li>
+    </ul>
+
+    <div class="tabs-content" style="padding-bottom:0; margin-bottom:15px;">
+	<div id="tab-dados" class="tabs">
+	    <p>
+		<label class="required" for="nome">Nome</label>
+		<?php echo $this->form->getElement( 'nome' ); ?>
+	    </p>
+
+	    <div class="float-left gutter-right full-width">
+		<span class="relative">
+		    <label class="required" for="arquivo">Arquivo</label>
+		    <span class="input-type-text" id="container-upload" style="width:100%">
+			<input type="text"  style="width:90%" id="desc-file" />
+			<img style="float: right;" width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/magnifier.png' ); ?>">
+		    </span>
+		    <?php echo $this->form->getElement( 'arquivo' ); ?>
+		</span>
+	    </div>
+
+	    <p>
+		<label for="descricao">Descri&ccedil;&atilde;o</label>
+		<?php echo $this->form->getElement( 'descricao' ); ?>
+	    </p>
+
+	    <p>
+		<span class="progress-bar upload-progress">
+		    <span class="bar"></span>
+		    <span class="info">0%</span>
+		</span>
+	    </p>
+	</div>
+
+	<div id="tab-aviso" class="tabs">
+	    <fieldset style="margin-bottom: 20px">
+		<div class="toolbar-controls">
+		    <ul class="controls-buttons" style="margin-top:-10px">
+			<li>
+			    Marcar todos 
+			    <input onClick="checkAll( this );" type="checkbox" class="mini-switch" value="1" id="check-all" name="check-all" style="display: none;">
+			</li>
+		    </ul>
+		</div>
+
+		<ul class="simple-list" id="list-perfis" style="height: 180px; overflow: auto;">
+		    <?php echo $this->form->getElement( 'perfil' ); ?>
+		</ul>
+	    </fieldset>
+	</div>
+
+	<div id="tab-metatags" class="tabs">
+	    <p>
+		<label for="title">Title</label>
+		<?php echo $this->form->getElement( 'title' ); ?>
+	    </p>
+
+	    <p>
+		<label for="descricao">Description</label>
+		<?php echo $this->form->getElement( 'description' ); ?>
+	    </p>
+
+	    <p>
+		<label for="descricao">Keywords</label>
+		<?php echo $this->form->getElement( 'keywords' ); ?>
+	    </p>
+	</div>
+
+	<div id="tab-categoria">
+	    <fieldset>
+		<div style="height: 230px; overflow: auto;">
+		    <?php
+			echo $this->categoria()
+				->setName( 'categorias' )
+				->setElement( 'checkbox' )
+				->setValues( $this->categorias );
+		    ?>
+		</div>
+	    </fieldset>
+	</div>
+
+	<div id="tab-tag">
+	    <fieldset>
+		<div class="toolbar-controls">
+		    <a href="javascript:;" onClick="dialogTag()">
+			<img src="<?php echo $this->baseUrl( 'public/images/icons/fugue/plus-circle.png' ); ?>" width="16" height="16">
+			Adicionar
+		    </a>
+		    <a href="javascript:;" onClick="removeAllTags()">
+			<img src="<?php echo $this->baseUrl( 'public/images/icons/fugue/cross-circle.png' ); ?>" width="16" height="16">
+			Remover Todos
+		    </a>
+		</div>
+
+		<div>
+		    <ul class="simple-list" id="tags-arquivos" style="height: 165px; overflow: auto;">
+			<?php
+			if ( !empty( $this->tags ) ) :
+			    foreach ( $this->tags as $tag ) :
+				?>
+				<li>
+				    <a href="javascript:;">
+					<img src="<?php echo $this->baseUrl( 'public/images/icons/fugue/cross-circle.png' ); ?>"  class="img-delete-tags" />
+					<input type="hidden" name="tags[]" value="<?php echo $tag->id; ?>" class="tags-arquivos" />
+					<?php echo $tag->titulo; ?>
+				    </a>
+				</li>
+				<?php
+			    endforeach;
+			endif;
+			?>
+		    </ul>
+		</div>
+	    </fieldset>
+	</div>
+    </div>
+
+    <iframe style="margin:0; padding:0; display:none;" name="upload_target" onload="callBackUpload( this );" id="upload_target"></iframe>
+
+    <fieldset class="grey-bg no-margin">
+	<div style="text-align: center;">
+	    <button type="submit">
+		<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>">
+		Salvar
+	    </button>
+	</div>
+    </fieldset>
+</form>

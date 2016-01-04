@@ -1,0 +1,11 @@
+<?php if ( $this->rows->count() ): ?>
+    <ul>
+	<?php foreach ( $this->rows as $row ): ?>
+	    <li>
+		<a class="<?php echo $this->showIconDocument()->css( $row->descricao ); ?>" href="javascript:;" onclick="chooseFilterTree(this, 'extensao', <?php echo $row->id; ?>);" rel="<?php echo $row->id; ?>">
+		    <span><?php echo $row->descricao; ?></span>
+		</a>
+	    </li>
+	<?php endforeach; ?>
+    </ul>
+<?php endif; ?>

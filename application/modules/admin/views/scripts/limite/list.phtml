@@ -1,0 +1,20 @@
+<div style="height: auto; padding:5px 10px; overflow-y: auto;">
+	<?php if ( $this->rows->count() ): ?>
+		<ul class="blocks-list">
+			<?php foreach ( $this->rows as $row ): ?>
+				<li>
+					<a href="javascript:;" onclick="setLimite(<?php echo $row->id; ?>);" class="float-left">
+						<img src="<?php echo $this->baseUrl('public/images/icons/fugue/tick-circle.png'); ?>" width="16" height="16">
+						Selecionar 
+					</a>
+			        
+					<ul id="list-limite" class="tags float-right">
+						<li class="tag-user"><?php echo App_Util_Readable::readBytes($row->maximo, $row->unidade_limite); ?></li>
+						<li class="tag-time"><?php echo App_Util_Readable::readTime($row->periodo, $row->unidade_periodo); ?></li>
+						<li class="tag-tags"><?php echo $row->quantidade; ?></li>
+					</ul>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+</div>

@@ -1,0 +1,93 @@
+<div class="form">
+    <table width="100%" id="grid-list-files" cellspacing="0" class="table sortable no-margin">
+	<thead>
+	    <tr>
+		<th class="black-cell sorting_disabled" style="width: 17px;"><span></span></th>
+		<th scope="col" style="width: 121px;" class="sorting">
+		    <span class="column-sort">
+			<a class="sort-up" title="Sort up" href="#"></a>
+			<a class="sort-down" title="Sort down" href="#"></a>
+		    </span>
+		    Publicado Por
+		</th>
+		<th scope="col" style="width: 131px;" class="sorting">
+		    <span class="column-sort">
+			<a class="sort-up" title="Sort up" href="#"></a>
+			<a class="sort-down" title="Sort down" href="#"></a>
+		    </span>
+		    Tamanho
+		</th>
+		<th scope="col" style="width: 131px;" class="sorting">
+		    <span class="column-sort">
+			<a class="sort-up" title="Sort up" href="#"></a>
+			<a class="sort-down" title="Sort down" href="#"></a>
+		    </span>
+		    Extens&atilde;o
+		</th>
+		<th scope="col" style="width: 131px;" class="sorting">
+		    <span class="column-sort">
+			<a class="sort-up" title="Sort up" href="#"></a>
+			<a class="sort-down" title="Sort down" href="#"></a>
+		    </span>
+		    Arquivo
+		</th>
+		<th scope="col" style="width: 131px;" class="sorting">
+		    <span class="column-sort">
+			<a class="sort-up" title="Sort up" href="#"></a>
+			<a class="sort-down" title="Sort down" href="#"></a>
+		    </span>
+		    Data
+		</th>
+		<th class="table-actions sorting_disabled" scope="col" style="width: 90px;">A&ccedil;&otilde;es</th>
+	    </tr>
+	</thead>
+
+	<tbody>
+	    <?php foreach ( $this->rows as $key => $value ): ?>
+    	    <tr class="<?php echo $this->cycle( array( 'odd', 'even' ) )->next(); ?>">
+    		<td class="th table-check-cell sorting_1">
+    		    <input type="checkbox" class="check-arquivos" value="<?php echo $value->id; ?>" name="arquivos[]" />
+    		</td>
+    		<td><?php echo $value->usuario; ?></td>
+    		<td><?php echo $this->bitCalculator( $value->tamanho ); ?></td>
+    		<td>
+		    <span class="icon-extensao <?php echo $this->showIconDocument()->css( $value->extensao ); ?>">
+			<?php echo strtoupper( $value->extensao ); ?>
+		    </span>
+		</td>
+    		<td><?php echo $this->truncate( $value->nome ); ?></td>
+    		<td><?php echo $this->date( $value->dt_cadastro, 'dd/MM/yyyy HH:mm' ); ?></td>
+    		<td class="table-actions">
+    		    <a class="with-tip" title="Abrir" href="javascript:;" onclick="openFile('<?php echo $this->path( 'property' ), '/id/', $value->id; ?>');">
+    			<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/folder-open.png' ); ?>">
+    		    </a>
+			<?php if ( App_Util_Access::checkAccess( App_Util_Access::EDITAR ) ): ?>
+			    <a class="with-tip" title="Editar" href="javascript:;" onclick="dialog('<?php echo $this->path( 'edit' ), '/id/', $value->id; ?>');">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/pencil.png' ); ?>">
+			    </a>
+			    <a class="with-tip" title="<?php echo empty( $value->liberado ) ? 'Liberar' : 'Bloquear'; ?>" href="javascript:;" onclick="refreshStatusFile(this, <?php echo $value->id; ?>, <?php echo $value->liberado; ?>)">
+				<?php if ( !empty( $value->liberado ) ): ?>
+	    			<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/cross-circle.png' ); ?>">
+				<?php else: ?>
+	    			<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/tick-circle.png' ); ?>">
+				<?php endif; ?>
+			    </a>
+			<?php endif; ?>
+
+			<?php if ( App_Util_Access::checkAccess( App_Util_Access::DOWNLOAD ) && $value->liberado ): ?>
+			    <a class="with-tip" title="Download" href="javascript:;" onClick="downloadArquivo( <?php echo $value->id; ?> );">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/navigation-270-white.png' ); ?>">
+			    </a>
+			<?php endif; ?>
+
+			<?php if ( App_Util_Access::checkAccess( App_Util_Access::EXCLUIR ) && !$value->liberado ): ?>
+			    <a class="with-tip" title="Excluir" href="javascript:;" onclick="excluir('<?php echo $value->id; ?>');">
+				<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/trash.png' ); ?>">
+			    </a>
+			<?php endif; ?>
+    		</td>
+    	    </tr>
+	    <?php endforeach; ?>
+	</tbody>
+    </table>
+</div>

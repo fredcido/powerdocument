@@ -1,0 +1,39 @@
+<fieldset class="grey-bg" style="padding: 20px">
+
+    <p class="input-type-text form">
+	<input type="text" name="simple-search" id="simple-search" class="full-width" title="Filtra categorias" />
+	<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/magnifier.png' ); ?>" class="float-right" style="margin:7px 0 0 -25px; position: absolute" />
+    </p>
+
+    <p>
+	<ul id="list-categorias" style="height: 178px; overflow: auto;" class="simple-list with-icon">
+	    <?php
+		if ( !empty( $this->categorias ) ) :
+		    foreach ( $this->categorias as $categoria ) :
+	    ?>
+		<li>
+		    <a href="javascript:;">
+			<input value='<?php echo json_encode( $categoria->toArray() ); ?>' 
+			       type="checkbox" style="display: none" class="categoria_sel" />
+			<p class="label-categorias"><?php echo $categoria->nome; ?></p>
+		    </a>
+		</li>
+	    <?php
+		    endforeach;
+		endif;
+	    ?>
+	</ul>
+    </p>
+
+    <div style="text-align: center">
+	<button class="small" onClick="addCategorias();">
+	    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/plus-circle.png' ); ?>">
+	    Adicionar
+	</button>
+	<button class="small" onClick="checkAllCategorias();">
+	    <img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/pin-small.png' ); ?>">
+	    Marcar Todos
+	</button>
+    </div>
+
+</fieldset>

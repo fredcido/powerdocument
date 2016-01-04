@@ -1,0 +1,23 @@
+<ul class="container_12">
+    <?php foreach ( $this->container as $page ) : ?>
+	<?php if ( $page->menu && App_Util_Access::checkByModule( $page->getModule() ) ) : ?>
+	    <li class="<?php echo $page->menu; ?> <?php echo $page->isActive() ? ' current' : '' ?>">
+		<a href="<?php echo $page->getHref(); ?>" title="<?php echo $page->getLabel(); ?>">
+		    <?php echo $page->getLabel(); ?>
+		</a>
+				
+		<?php if ( $page->pages && $page->isActive() ) : ?>
+	    	<ul>
+		    <?php foreach ( $page->pages as $subpage ) : ?>
+			<li <?php echo $subpage->isActive() ? 'class="current"' : '' ?> >
+			    <a href="<?php echo $subpage->getHref(); ?>" title="<?php echo $subpage->getLabel(); ?>">
+				<?php echo $subpage->getLabel(); ?>
+			    </a>
+			</li>
+		    <?php endforeach; ?>
+	    	</ul>
+		<?php endif; ?>
+	    </li>
+	<?php endif; ?>
+    <?php endforeach; ?>
+</ul>

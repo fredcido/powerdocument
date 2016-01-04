@@ -1,0 +1,84 @@
+<div class="columns">
+    <div class="colx2-left">
+
+	<div class="block-content">
+	    <h1>Contato</h1>
+
+	    <form method="<?php echo $this->form->getMethod() ?>" class="form" action="<?php echo $this->form->getAction() ?>" onsubmit="return save(this);">
+		<?php echo $this->form->getElement( 'id' ); ?>
+
+		<p>
+		    <span class="relative">
+			<label for="titulo" class="required">Título:</label>
+			<?php echo $this->form->getElement( 'titulo' ); ?>
+		    </span>
+		</p>
+		<p>
+		    <span class="relative">
+			<label for="nome" class="required">Nome:</label>
+			<?php echo $this->form->getElement( 'nome' ); ?>
+		    </span>
+		</p>
+		<p>
+		    <span class="relative">
+			<label for="email" class="required">E-mail:</label>
+			<?php echo $this->form->getElement( 'email' ); ?>
+		    </span>
+		</p>
+		<p>
+		    <span class="relative">
+			<label for="conteudo" class="required">Mensagem:</label>
+			<?php echo $this->form->getElement( 'conteudo' ); ?>
+		    </span>
+		</p>
+
+
+		<div style="text-align: center">
+		    <button type="submit">
+			<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/application-export.png' ); ?>" />
+			Enviar
+		    </button>
+		</div>
+	    </form>
+	</div>
+
+    </div>
+    <div class="colx2-right">
+
+	<div class="block-content">
+	    <h1>Dados</h1>
+
+	    <h3>Fale conosco, será um prazer atendê-lo</h3>
+
+	    <p>
+	    <ul class="picto-list">
+		<li class="icon-telephone">
+		    (999) 9999-9999
+		</li>
+		<li class="icon-email">
+		    <a href="mailto:contato@email.com">
+			contato@email.com
+		    </a>
+		</li>
+		<li class="icon-site">
+		    <a href="http://www.powerdocument.com.br" target="_blank">
+			wwww.powerdocument.com.br
+		    </a>
+		</li>
+		<li class="icon-facebook">
+		    <a href="http://www.facebook.com" target="_blank">
+			Administrador
+		    </a>
+		</li>
+		<li class="icon-twitter">
+		    <a href="http://twitter.com" target="_blank">
+			@administrador
+		    </a>
+		</li>
+	    </ul>
+	    </p>
+
+	</div>
+
+    </div>
+</div>

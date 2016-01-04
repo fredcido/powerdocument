@@ -1,0 +1,54 @@
+
+<ul class="tabs js-tabs same-height">
+    <?php if ( $this->preview()->isValid( $this->row->extensao ) ): ?>
+    	<li class="current"><a href="#tab-view">Visualiza&ccedil;&atilde;o</a></li>
+	<li><a href="#tab-data">Dados</a></li>
+    <?php else : ?>
+	<li class="current"><a href="#tab-data">Dados</a></li>
+    <?php endif; ?>
+	
+</ul>
+ 
+<div class="tabs-content" style="height: 400px; padding-bottom:0; margin-bottom:15px;">
+    	<div id="tab-data" class="tabs">
+	    <div class="infos" style="background: url(<?php echo $this->baseUrl('public/images/icons/finefiles/32/'), $this->showIconDocument()->ico($this->row->extensao); ?>) 5px 10px no-repeat">
+		    <small><?php echo strtoupper($this->row->extensao); ?></small>
+		    <h2 class="bigger"><?php echo $this->row->nome; ?></h2>
+	    </div>
+
+	    <p class="grey" style="height: 50px; overflow: auto;"><?php echo $this->row->descricao; ?></p>
+
+	    <p><strong>Meta Tags:</strong></p>
+
+	    <dl class="accordion">
+		<dt class=""><span class="number">1</span> Title</dt>
+		<dd style="display: none; height: 50px; overflow: auto;">
+		    <p><?php echo $this->row->title; ?></p>
+		</dd>
+
+		<dt class=""><span class="number">2</span> Description</dt>
+		<dd style="display: none; height: 50px; overflow: auto;">
+		    <p><?php echo $this->row->description; ?></p>
+		</dd>
+
+		<dt class="opened"><span class="number">3</span> Keywords</dt>
+		<dd style="display: none; height: 50px; overflow: auto;">
+		    <p><?php echo $this->row->keywords; ?></p>
+		</dd>
+	    </dl>
+	</div>
+	<?php if ( $this->preview()->isValid( $this->row->extensao ) ): ?>
+		<div id="tab-view" class="tabs">
+			<?php echo $this->preview()->view( $this->row ); ?>
+		</div>
+	<?php endif; ?>
+</div>
+
+<?php if (App_Util_Access::checkAccess( App_Util_Access::DOWNLOAD )): ?>
+    <p style="text-align:center; margin-top: -55px">
+	<button class="	red" type="button" onClick="downloadArquivo( <?php echo $this->row->id; ?> );">
+	    <img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/arrow-270.png'); ?>"> 
+	    Download
+	</button>
+    </p>
+<?php endif; ?>

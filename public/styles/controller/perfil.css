@@ -1,0 +1,24 @@
+li.categoria-selected {
+    background: #B0D6E8;
+}
+.img-delete-categorias {
+    float: left;
+    margin-top: -2px;
+    padding-right: 5px;
+}
+
+#list-acoes label {
+    font-weight: normal !important;
+}
+
+#list-acoes label input {
+    margin-right: 5px;
+}
+
+.toolbar-controls {
+	background: -moz-linear-gradient(center top , white, #E5E5E5 88%, #D8D8D8) repeat scroll 0 0 transparent;
+	border-bottom: 1px solid #999999;
+	margin: 0 -1.667em 1.667em;
+	padding: 20px;
+	text-align: right;
+}

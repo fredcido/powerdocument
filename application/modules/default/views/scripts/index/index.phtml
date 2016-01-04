@@ -1,0 +1,40 @@
+<section class="grid_6">
+	<div class="block-border">
+		<div class="block-content">
+			<h1>Painel de Controle</h1>
+			
+			<?php
+			    $dashboardPages = $this->navigation()->findAllBy( 'dashboard', true );
+			    
+			    $titles = array();
+			    $first  = true;
+			    
+			    foreach ( $dashboardPages as $page ) :
+				
+				if ( !App_Util_Access::checkByModule( $page->getModule() ) )
+				    continue;
+								
+				if ( !in_array( $page->dashboard['title'], $titles ) ) :
+				    echo $first ? $first = false : '</ul>'; 
+			?>
+			
+			    	<h3><?php echo $page->dashboard['title']; ?></h3>
+					
+				<ul class="shortcuts-list">
+			<?php
+				    $titles[] = $page->dashboard['title'];
+				endif;
+			?>
+			    <li>
+				<a href="<?php echo $page->getHref(); ?>">
+				    <img src="<?php echo $this->baseUrl('/public/images/icons/web-app/48/' . $page->dashboard['icon'] . '.png' ); ?>" width="48" height="48" />
+				    <?php echo $page->getLabel(); ?>
+				</a>
+			    </li>
+			<?php 
+			    endforeach; 
+			?>
+			</ul>
+		</div>
+	</div>
+</section>

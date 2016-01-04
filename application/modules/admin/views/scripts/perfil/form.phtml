@@ -1,0 +1,98 @@
+<ul class="tabs js-tabs same-height">
+    <li class="current">
+    	<a href="#tab-data">Dados</a>
+    </li>
+    <li>
+    	<a href="#tab-acoes">A&ccedil;&otilde;es</a>
+    </li>
+    <li>
+    	<a href="#tab-categorias">Categorias</a>
+    </li>
+    <li>
+    	<a href="#tab-limites">Limites</a>
+    </li>
+</ul>
+
+<div class="tabs-content" id="tab-container">
+	<form id="form-post" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction(); ?>" class="form" onsubmit="return save(this);">
+    	<?php echo $this->form->getElement( 'id' ); ?>
+    	
+    	<div id="tab-data" class="tabs">
+    		<fieldset>
+				<div class="columns">
+					<div class="colx3-left-double">
+						<p>
+							<label for="nome" class="required">Nome</label>
+							<?php echo $this->form->getElement( 'nome' ); ?>
+						</p>
+					</div>
+					
+					<div class="colx3-right">
+						<p>
+							<span class="label required">Liberado</span>
+							<?php echo $this->form->getElement( 'liberado' ); ?>
+						</p>
+					</div>
+				</div>
+				
+				<p>
+					<label for="descricao">Descri&ccedil;&atilde;o</label>
+					<?php echo $this->form->getElement( 'descricao' ); ?>
+				</p>
+			</fieldset>
+	    </div>
+
+	    <div id="tab-acoes" class="tabs">
+			<fieldset style="margin-bottom: 20px">
+				<div class="toolbar-controls">
+					<ul class="controls-buttons" style="margin-top:-10px">
+						<li>
+							Marcar todos 
+							<input onClick="checkAll( this );" type="checkbox" class="mini-switch" value="1" id="check-all" name="check-all" style="display: none;">
+						</li>
+					</ul>
+				</div>
+				
+				<ul class="simple-list" id="list-acoes">
+					<?php echo $this->form->getElement( 'acoes' ); ?>
+				</ul>
+			</fieldset>
+	    </div>
+	    
+	    <div id="tab-categorias" class="tabs">
+	    	<fieldset>
+                    <div style="height: 230px; overflow: auto;">
+                     <?php echo $this->categoria()
+                                    ->setName( 'categorias' )
+                                    ->setElement( 'checkbox' )
+                                    ->setValues( $this->categorias ); ?>
+                    </div>
+                </fieldset>
+	    </div>
+	    
+	    <div id="tab-limites" class="tabs">
+	    	<?php echo $this->form->getElement('limite_id'); ?>
+		<div id="html-limite">
+			<?php 
+				$params = array();
+
+				$limite_id = $this->form->getElement('limite_id')->getValue();
+				
+				if ( !empty($limite_id) )
+					$params['id'] = $limite_id;
+
+				echo $this->action('selected', 'limite', 'admin', $params); 
+			?>
+		</div>
+	    </div>
+	    
+	    <fieldset class="grey-bg no-margin">
+			<div style="text-align: center;">
+			    <button type="submit">
+					<img width="16" height="16" src="<?php echo $this->baseUrl( 'public/images/icons/fugue/disk.png' ); ?>">
+					Salvar
+			    </button>
+			</div>
+	    </fieldset>
+    </form>
+</div>

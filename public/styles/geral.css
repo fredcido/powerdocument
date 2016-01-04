@@ -1,0 +1,9 @@
+.tags-itens {
+    height: 190px;
+    overflow: auto;
+    padding-right: 5px;
+}
+
+.tag-selected {
+    background: #B6DDED !important;
+}

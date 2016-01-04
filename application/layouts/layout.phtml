@@ -1,0 +1,106 @@
+<?php echo $this->docType('HTML5'); ?>
+<html lang="pt-br">
+<head>
+	<?php
+		echo $this->headTitle(); 
+		echo $this->headMeta()->appendName('charset', 'utf-8');
+	?> 
+	
+	<script type="text/javascript">
+		var baseUrl = '<?php echo $this->baseUrl(); ?>';
+	</script>
+	
+	<?php
+		echo $this->headLink();
+		echo $this->headScript();
+		
+		$session = App_Util_Session::get();
+	?>
+</head>
+<body>
+<!--[if lt IE 9]><div class="ie"><![endif]-->
+<!--[if lt IE 8]><div class="ie7"><![endif]-->
+	
+	<header>
+		<div class="container_12">
+			<div class="server-info">Php: <strong><?php echo phpversion(); ?></strong></div>
+		</div>
+	</header>
+	
+	<nav id="main-nav">
+	    <?php echo $this->navigation()->menu()->setPartial('menu.phtml'); ?>
+	</nav>
+	
+	<div id="sub-nav">
+	</div>
+	
+	<div id="status-bar">
+		<div class="container_12">
+	
+			<ul id="status-infos">
+				<li class="spaced">Usu&aacute;rio: <strong><?php echo Zend_Auth::getInstance()->getIdentity()->nome; ?></strong></li>
+				<?php if ( !empty($session->perfil->nome) ): ?>
+					<li class="spaced">Perfil: <strong><?php echo $session->perfil->nome; ?></strong></li>
+				<?php endif; ?>
+				
+				<li><a href="<?php echo $this->path( 'logout', 'auth', 'default' ); ?>" class="button red" title="Sair"><span class="smaller">SAIR</span></a></li>
+			</ul>
+			
+		    <ul id="breadcrumb">
+				<li>
+			    	<?php echo $this->navigation()
+						->breadcrumbs()
+						->setLinkLast(true)
+						->setMinDepth(0)
+						->setSeparator('</li><li>'); 
+					?>
+				</li>
+		    </ul>
+		
+		</div>
+	</div>
+	
+	<?php if ( empty($this->noToolBar) ): ?>
+		<div class="grey-bg clearfix" id="control-bar" style="opacity: 1;">
+			<div class="container_12">
+				<div class="float-right">
+					<?php if ( empty( $this->toolbars ) ) { ?>
+					    <button type="button" id="novo">
+						    <img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/document.png'); ?>"> 
+						    Novo
+					    </button>
+					<?php } else { ?>
+						
+					    <?php foreach ( $this->toolbars as $toolbar ) : ?>
+						
+						<button type="button" id="<?php echo $toolbar['id']; ?>">
+							<img width="16" height="16" src="<?php echo $this->baseUrl( $toolbar['image'] ); ?>"> 
+							<?php echo $toolbar['label']; ?>
+						</button>
+				    
+					    <?php endforeach; ?>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	
+	<article class="container_12">
+		<?php echo $this->layout()->content; ?>
+		
+		<div class="clear"></div>
+	</article>
+	
+	<footer>
+		<div class="float-right">
+			<a href="#top" class="button">
+				<img src="<?php echo $this->baseUrl('public/images/icons/fugue/navigation-090.png'); ?>" width="16" height="16"> 
+				Ir para o topo
+			</a>
+		</div>
+	</footer>
+	
+<!--[if lt IE 8]></div><![endif]-->
+<!--[if lt IE 9]></div><![endif]-->
+</body>
+</html>

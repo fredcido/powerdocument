@@ -1,0 +1,48 @@
+<h1>
+	Lista de IPs
+	<a href="javascript:;" onclick="dialog('<?php echo $this->path('form', 'ip'); ?>');"><img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/plus-circle-blue.png'); ?>"> add</a>
+</h1>
+
+<?php if ( $this->rows->count() ): ?>
+<ul class="extended-list no-margin icon-computer">
+	<?php foreach ( $this->rows as $row ): ?>
+	<li>
+		<a>
+			<span class="icon"></span>
+			<?php echo $row->ip; ?><br>
+			<small><?php echo $row->descricao; ?></small>
+		</a>
+		
+		<ul class="mini-menu" style="opacity: 0;">
+			<li>
+				<a title="Editar" href="javascript:;" onclick="dialog('<?php echo $this->path( 'edit/id/'.$row->id, 'ip' ); ?>');">
+					<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/pencil.png'); ?>">
+					Editar
+				</a>
+			</li>
+			<li>
+				<a title="Deletar" href="javascript:;" onclick="remover('<?php echo $this->path( 'delete/id/', 'ip'), $row->id; ?>');">
+					<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/cross-circle.png'); ?>"> 
+					Deletar
+				</a>
+			</li>
+		</ul>
+	</li>
+	<?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<ul class="message no-margin">
+	<?php if ( 0 < ($count = $this->rows->count()) ): ?>
+		<li>
+			<?php echo $count; ?>
+			<?php if ( 1 < $count): ?>
+				itens encontrados
+			<?php else: ?>
+				item encontrado
+			<?php endif; ?>
+		</li>
+	<?php else: ?>
+		<li>Nenhum item encontrado</li>
+	<?php endif; ?>
+</ul> 

@@ -1,0 +1,12 @@
+<?php if ( $this->rows->count() ): ?>
+		<?php foreach ( $this->rows as $row ): ?>
+                        <li class="closed">
+                            <?php if ( !empty($row->child) ): ?>
+                                <span class="toggle child"></span>
+                            <?php endif; ?>
+                            <a class="<?php echo empty($row->child) ? 'document' : 'folder'; ?>" href="javascript:;" onclick="chooseFilterTree(this, 'categoria', <?php echo $row->id; ?>);" rel="<?php echo $row->id; ?>">
+                                    <span><?php echo $row->nome; ?></span>
+                            </a>
+			</li>
+		<?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,56 @@
+<section class="grid_12">
+	<div class="block-border">
+		<form action="#" method="post" id="table_form" class="block-content form">
+			<h1>IP</h1>
+	
+			<div class="no-margin last-child">
+			
+				<table width="100%" cellspacing="0" class="table sortable no-margin">
+					<thead>
+						<tr>
+							<th class="black-cell sorting_disabled" style="width: 17px;">
+								<span></span>
+							</th>
+							<th scope="col" style="width: 121px;" class="sorting">
+								<span class="column-sort">
+									<a class="sort-up" title="Sort up" href="#"></a>
+									<a class="sort-down" title="Sort down" href="#"></a>
+								</span>
+								IP
+							</th>
+							<th scope="col" style="width: 351px;" class="sorting">
+								<span class="column-sort">
+									<a class="sort-up" title="Sort up" href="#"></a>
+									<a class="sort-down" title="Sort down" href="#"></a>
+								</span>
+								Descri&ccedil;&atilde;o
+							</th>
+							<th class="table-actions sorting_disabled" scope="col" style="width: 90px;">A&ccedil;&otilde;es</th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<?php if ( $this->rows->count() ): ?>
+							<?php foreach ( $this->rows as $row ): ?>
+								<tr class="<?php echo $this->cycle( array('odd', 'even') )->next(); ?>">
+									<td class="th table-check-cell sorting_1">1</td>
+									<td><?php echo $row->ip; ?></td>
+									<td><?php echo $row->descricao; ?></td>
+									<td class="table-actions">
+										<a class="with-tip" title="Editar" href="javascript:;" onclick="dialog('<?php echo $this->path( 'edit/id/'.$row->id ); ?>');">
+											<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/pencil.png'); ?>">
+										</a>
+										<a class="with-tip" title="Deletar" href="javascript:;" onclick="remover('<?php echo $this->path( 'delete/id/' ), $row->id; ?>');">
+											<img width="16" height="16" src="<?php echo $this->baseUrl('public/images/icons/fugue/cross-circle.png'); ?>">
+										</a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php endif; ?>
+					</tbody>
+				</table>
+			
+			</div>	
+		</form>
+	</div>
+</section>
